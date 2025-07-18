@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4243B05E-2718-4137-9ACE-E37A1BAC2DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Api", "src\TicTacToe.Api\TicTacToe.Api.csproj", "{F76C2C68-F18F-4D85-A45F-49BA341F7FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Domain", "src\TicTacToe.Domain\TicTacToe.Domain.csproj", "{15F59809-011D-4F76-97BB-42CD5103D269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Application", "src\TicTacToe.Application\TicTacToe.Application.csproj", "{BA732998-6628-484B-B28F-4F2427D9BBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Infrastructure", "src\TicTacToe.Infrastructure\TicTacToe.Infrastructure.csproj", "{8CB53218-F9C8-4D26-8070-8F46A7FC2A47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9153FFEC-AE86-4953-8143-583E71B90855}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Tests.Unit", "tests\TicTacToe.Tests.Unit\TicTacToe.Tests.Unit.csproj", "{018A2F2E-DF1F-4C87-BF0A-E9983B381735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Tests.Integration", "tests\TicTacToe.Tests.Integration\TicTacToe.Tests.Integration.csproj", "{028D5455-366D-4BFF-BFE4-D37AED7A2F8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76C2C68-F18F-4D85-A45F-49BA341F7FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76C2C68-F18F-4D85-A45F-49BA341F7FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76C2C68-F18F-4D85-A45F-49BA341F7FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76C2C68-F18F-4D85-A45F-49BA341F7FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F59809-011D-4F76-97BB-42CD5103D269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F59809-011D-4F76-97BB-42CD5103D269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F59809-011D-4F76-97BB-42CD5103D269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F59809-011D-4F76-97BB-42CD5103D269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA732998-6628-484B-B28F-4F2427D9BBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA732998-6628-484B-B28F-4F2427D9BBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA732998-6628-484B-B28F-4F2427D9BBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA732998-6628-484B-B28F-4F2427D9BBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB53218-F9C8-4D26-8070-8F46A7FC2A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB53218-F9C8-4D26-8070-8F46A7FC2A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB53218-F9C8-4D26-8070-8F46A7FC2A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB53218-F9C8-4D26-8070-8F46A7FC2A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018A2F2E-DF1F-4C87-BF0A-E9983B381735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018A2F2E-DF1F-4C87-BF0A-E9983B381735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018A2F2E-DF1F-4C87-BF0A-E9983B381735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018A2F2E-DF1F-4C87-BF0A-E9983B381735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028D5455-366D-4BFF-BFE4-D37AED7A2F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028D5455-366D-4BFF-BFE4-D37AED7A2F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028D5455-366D-4BFF-BFE4-D37AED7A2F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028D5455-366D-4BFF-BFE4-D37AED7A2F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F76C2C68-F18F-4D85-A45F-49BA341F7FDD} = {4243B05E-2718-4137-9ACE-E37A1BAC2DE6}
+		{15F59809-011D-4F76-97BB-42CD5103D269} = {4243B05E-2718-4137-9ACE-E37A1BAC2DE6}
+		{BA732998-6628-484B-B28F-4F2427D9BBB8} = {4243B05E-2718-4137-9ACE-E37A1BAC2DE6}
+		{8CB53218-F9C8-4D26-8070-8F46A7FC2A47} = {4243B05E-2718-4137-9ACE-E37A1BAC2DE6}
+		{018A2F2E-DF1F-4C87-BF0A-E9983B381735} = {9153FFEC-AE86-4953-8143-583E71B90855}
+		{028D5455-366D-4BFF-BFE4-D37AED7A2F8D} = {9153FFEC-AE86-4953-8143-583E71B90855}
+	EndGlobalSection
+EndGlobal
