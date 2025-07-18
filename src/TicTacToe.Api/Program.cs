@@ -1,4 +1,6 @@
+using TicTacToe.Application.Extensions;
 using TicTacToe.Infrastructure.Extensions;
+using TicTacToe.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// add application services (registered use cases)
+builder.Services.AddApplication();
 
 // add infrastructure services
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -21,6 +26,13 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// ensure DB is created (use InMemory for development environment)
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TicTacToeDbContext>();
+    context.Database.EnsureCreated();
+}
 
 // HTTP request pipeline
 if (app.Environment.IsDevelopment())
