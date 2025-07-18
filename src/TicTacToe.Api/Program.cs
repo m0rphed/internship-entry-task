@@ -1,3 +1,5 @@
+using TicTacToe.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // add services: controllers, swagger
@@ -5,8 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// add health checks
-builder.Services.AddHealthChecks();
+// add infrastructure services
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // add CORS for the dev environment
 builder.Services.AddCors(options =>
