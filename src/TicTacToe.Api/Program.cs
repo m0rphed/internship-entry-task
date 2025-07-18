@@ -8,7 +8,7 @@ builder.Services.AddSwaggerGen();
 // add health checks
 builder.Services.AddHealthChecks();
 
-// add CORS for dev. environment
+// add CORS for the dev environment
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development",
@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// configure the HTTP request pipeline
+// HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
