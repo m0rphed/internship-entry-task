@@ -13,11 +13,26 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        // add DB context - context for PostgresSQL
-        services.AddDbContext<TicTacToeDbContext>(options =>
+        // add DbContext
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        
+        if (string.IsNullOrEmpty(connectionString) || connectionString.Contains("localhost"))
         {
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-        });
+            // use InMemory DB for development/testing
+            // - when PostgreSQL is not available
+            services.AddDbContext<TicTacToeDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("TicTacToeInMemory");
+            });
+        }
+        else
+        {
+            // use PostgreSQL for production
+            services.AddDbContext<TicTacToeDbContext>(options =>
+            {
+                options.UseNpgsql(connectionString);
+            });
+        }
 
         // add repos
         services.AddScoped<IGameRepository, GameRepository>();
