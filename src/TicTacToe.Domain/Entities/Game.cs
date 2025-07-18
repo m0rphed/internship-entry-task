@@ -10,6 +10,7 @@ public class Game
     private readonly WinConditionChecker _winConditionChecker;
     private readonly RandomMoveService _randomMoveService;
 
+    // public constructor for creating new games
     public Game(
         Guid id,
         int boardSize,
@@ -19,10 +20,14 @@ public class Game
         int randomMoveInterval = 3)
     {
         if (boardSize < 3)
+        {
             throw new ArgumentException("Board size must be at least 3", nameof(boardSize));
+        }
 
         if (winCondition < 3 || winCondition > boardSize)
+        {
             throw new ArgumentException("Win condition must be between 3 and board size", nameof(winCondition));
+        }
 
         Id = id;
         BoardSize = boardSize;
@@ -32,12 +37,46 @@ public class Game
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
 
+        RandomMoveChance = randomMoveChance;
+        RandomMoveInterval = randomMoveInterval;
+
         _moves = new List<Move>();
         _board = new GameBoard(boardSize);
         _winConditionChecker = new WinConditionChecker(winCondition);
         _randomMoveService = new RandomMoveService(randomMoveChance, randomMoveInterval);
 
         Status = GameStatus.InProgress;
+    }
+
+    // private constructor for EF
+    // TODO: find better solution for this
+    private Game(
+        Guid id,
+        int boardSize,
+        int winCondition,
+        PlayerSymbol firstPlayer,
+        PlayerSymbol currentPlayer,
+        GameStatus status,
+        DateTime createdAt,
+        DateTime updatedAt,
+        double randomMoveChance,
+        int randomMoveInterval)
+    {
+        Id = id;
+        BoardSize = boardSize;
+        WinCondition = winCondition;
+        FirstPlayer = firstPlayer;
+        CurrentPlayer = currentPlayer;
+        Status = status;
+        CreatedAt = createdAt;
+        UpdatedAt = updatedAt;
+        RandomMoveChance = randomMoveChance;
+        RandomMoveInterval = randomMoveInterval;
+
+        _moves = new List<Move>();
+        _board = new GameBoard(boardSize);
+        _winConditionChecker = new WinConditionChecker(winCondition);
+        _randomMoveService = new RandomMoveService(randomMoveChance, randomMoveInterval);
     }
 
     public Guid Id { get; }
@@ -48,6 +87,8 @@ public class Game
     public GameStatus Status { get; private set; }
     public DateTime CreatedAt { get; }
     public DateTime UpdatedAt { get; private set; }
+    public double RandomMoveChance { get; }
+    public int RandomMoveInterval { get; }
 
     public IReadOnlyList<Move> Moves => _moves.AsReadOnly();
     public GameBoard Board => _board;

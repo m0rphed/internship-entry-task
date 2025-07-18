@@ -44,6 +44,13 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
             .IsRequired()
             .HasColumnType("timestamp with time zone");
 
+        builder.Property(g => g.RandomMoveChance)
+            .IsRequired()
+            .HasColumnType("double precision");
+
+        builder.Property(g => g.RandomMoveInterval)
+            .IsRequired();
+
         // the board property would be handled through moves
         // TODO: (DO NOT FORGER) handle `g.Board` properly
         builder.Ignore(g => g.Board);
