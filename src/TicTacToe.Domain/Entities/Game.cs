@@ -6,7 +6,7 @@ namespace TicTacToe.Domain.Entities;
 public class Game
 {
     private readonly List<Move> _moves;
-    private readonly GameBoard _board;
+    private GameBoard _board;
     private readonly WinConditionChecker _winConditionChecker;
     private readonly RandomMoveService _randomMoveService;
 
@@ -77,6 +77,19 @@ public class Game
         _board = new GameBoard(boardSize);
         _winConditionChecker = new WinConditionChecker(winCondition);
         _randomMoveService = new RandomMoveService(randomMoveChance, randomMoveInterval);
+    }
+
+    /// <summary>
+    /// Reconstructs the board state from moves
+    /// (used by EF Core after loading from database)
+    /// </summary>
+    public void ReconstructBoardFromMoves()
+    {
+        _board = new GameBoard(BoardSize);
+        foreach (var move in _moves.OrderBy(m => m.MoveNumber))
+        {
+            _board.PlaceSymbol(move.Position, move.Symbol);
+        }
     }
 
     public Guid Id { get; }

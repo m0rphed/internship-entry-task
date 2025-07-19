@@ -17,8 +17,14 @@ public class GameRepository : IGameRepository
 
     public async Task<Game?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _context.Games
+        var game = await _context.Games
+            .Include(g => g.Moves)
             .FirstOrDefaultAsync(g => g.Id == id, cancellationToken);
+
+        // reconstruct board state from moves if game exists
+        game?.ReconstructBoardFromMoves();
+        
+        return game;
     }
 
     public async Task<Game> CreateAsync(Game game, CancellationToken cancellationToken = default)
@@ -43,17 +49,35 @@ public class GameRepository : IGameRepository
 
     public async Task<IEnumerable<Game>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return await _context.Games
+        var games = await _context.Games
+            .Include(g => g.Moves)
             .OrderByDescending(g => g.CreatedAt)
             .ToListAsync(cancellationToken);
+
+        // Reconstruct board state for all games
+        foreach (var game in games)
+        {
+            game.ReconstructBoardFromMoves();
+        }
+        
+        return games;
     }
 
     public async Task<IEnumerable<Game>> GetByStatusAsync(GameStatus status,
         CancellationToken cancellationToken = default)
     {
-        return await _context.Games
+        var games = await _context.Games
+            .Include(g => g.Moves)
             .Where(g => g.Status == status)
             .OrderByDescending(g => g.CreatedAt)
             .ToListAsync(cancellationToken);
+
+        // Reconstruct board state for all games
+        foreach (var game in games)
+        {
+            game.ReconstructBoardFromMoves();
+        }
+        
+        return games;
     }
 }
