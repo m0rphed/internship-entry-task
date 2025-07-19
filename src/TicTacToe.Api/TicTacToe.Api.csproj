@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- make internals visible to integration tests -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="TicTacToe.Tests.Integration" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
