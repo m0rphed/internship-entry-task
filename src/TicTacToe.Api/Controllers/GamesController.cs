@@ -88,14 +88,24 @@ public class GamesController : ControllerBase
             _logger.LogInformation("Move made successfully in game {GameId}", id);
             return Ok(response);
         }
-        catch (ArgumentException ex)
+        catch (InvalidOperationException ex) when (ex.Message.Contains("already occupied"))
         {
-            _logger.LogWarning(ex, "Invalid move parameters for game {GameId}", id);
+            _logger.LogWarning(ex, "Position already occupied in game {GameId}", id);
+            return Conflict(new { error = ex.Message });
+        }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("finished game"))
+        {
+            _logger.LogWarning(ex, "Attempted move on finished game {GameId}", id);
             return BadRequest(new { error = ex.Message });
         }
         catch (InvalidOperationException ex)
         {
-            _logger.LogWarning(ex, "Invalid move operation for game {GameId}", id);
+            _logger.LogWarning(ex, "Invalid operation for game {GameId}", id);
+            return BadRequest(new { error = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogWarning(ex, "Invalid move parameters for game {GameId}", id);
             return BadRequest(new { error = ex.Message });
         }
         catch (Exception ex)
