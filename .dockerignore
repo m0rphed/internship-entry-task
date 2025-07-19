@@ -1,0 +1,71 @@
+# .dockerignore
+
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# IDE and editor files
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.tmp
+
+# Git and version control
+.git/
+.gitignore
+.gitattributes
+
+# Docker files (they shouldn't be copied into the container)
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Documentation and non-essential files
+README.md
+LICENSE
+*.md
+
+# Test results and coverage
+**/TestResults/
+**/coverage/
+**/*.trx
+
+# Package manager artifacts
+**/packages/
+node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+docker-compose*
+.dockerignore
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore test results
+TestResults/
+**/TestResults/
+
+# Ignore NuGet packages
+*.nupkg
+**/packages/
+
+# Ignore temp files
+**/tmp/
+**/temp/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
